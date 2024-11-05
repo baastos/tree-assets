@@ -27,7 +27,7 @@ The technologies used:
 
 ![image](src/assets/Screenshot_2.jpg)
 
-### Tree with energy sensor type selected filter
+### Tree with energy sensor type selected filter with selected item
 
 ![image](src/assets/Screenshot_3.jpg)
 
@@ -35,7 +35,7 @@ The technologies used:
 
 ![image](src/assets/Screenshot_4.jpg)
 
-### Display of asset selected
+### Responsive layout when using in mobile
 
 ![image](src/assets/Screenshot_5.jpg)
 

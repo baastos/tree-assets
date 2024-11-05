@@ -50,6 +50,12 @@ input,button {
 }
 
 @media screen and (max-width: 800px) {
+  body{
+    font-size: 12px;
+  }
+  .divider {
+    margin-top: 8px !important;
+  }
   #main-header,#tree-filters{
     flex-direction: column;
     gap: 8px;
@@ -63,7 +69,57 @@ input,button {
   }
   #tree-view {
     overflow-y: auto;
-    height: calc(100vh - 682px) !important;
+    height: calc(100vh - 782px) !important;
+  }
+  #tree-display-image-container{
+    flex-direction: column;
+    padding: 8px !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  #tree-display-image-upside{
+    padding: 12px !important;
+    flex-direction: row !important;
+  }
+  #display-footer{
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
   }
 
+  #display-item-footer{
+    margin: 0px !important
+  }
+
+}
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: inline-block;
+  border-top: 3px solid var(--components);
+  border-right: 3px solid transparent;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+.loader-companies {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: inline-block;
+  border-top: 3px solid var(--white);
+  border-right: 3px solid transparent;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

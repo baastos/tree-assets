@@ -21,23 +21,23 @@ The technologies used:
 
 ### Tree without filter and/or asset's selection
 
-![image](https://github.com/baastos/tree-assets/tree/master/src/assets/Screenshot_1)
+![image](src/assets/Screenshot_1.jpg)
 
 ### Tree with input filter
 
-![image](https://github.com/baastos/tree-assets/tree/master/src/assets/Screenshot_2)
+![image](src/assets/Screenshot_2.jpg)
 
 ### Tree with energy sensor type selected filter
 
-![image](https://github.com/baastos/tree-assets/tree/master/src/assets/Screenshot_3)
+![image](src/assets/Screenshot_3.jpg)
 
 ### Tree with alert status selected filter
 
-![image](https://github.com/baastos/tree-assets/tree/master/src/assets/Screenshot_4)
+![image](src/assets/Screenshot_4.jpg)
 
 ### Display of asset selected
 
-![image](https://github.com/baastos/tree-assets/tree/master/src/assets/Screenshot_5)
+![image](src/assets/Screenshot_5.jpg)
 
 ## Running the project
 

@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Development and technologies
 
-## Getting Started
+The technologies used:
 
-First, run the development server:
+- [Valtio](https://valtio.dev/docs/introduction/getting-started)
+  - Valtio was used to manage the state in a simple, efficient and reactive way. Valtio is a state management library that makes it easy to create observable states in JavaScript, allowing any changes in state to be automatically reflected in the user interface without the need for additional manipulations.
+- [React query (Tanstack query)](https://tanstack.com/query/v3/):
+  - React query was used to cache the API results, optimizing performance by preventing unnecessary refetching, ensuring clean asynchronous data management.
+- [Next.js](https://nextjs.org/)
+  - Next.js was chosen for its superior route performance, utilizing the [App route](https://nextjs.org/docs/app/building-your-application/routing) architecture. The directory structure inside /app represents each page/route in the project, providing efficient page routing, pushing, and parameter management.
+
+## What would I do differently with more time?
+
+- Implementing query parameters to enhance the usability of the filters, allowing users to easily share, save, and revisit filtered views.
+
+- Establishing test coverage for the project’s files and core functionalities.
+
+- Introducing pagination for trees with a large number of nodes would streamline processing.
+
+## Results
+
+### Tree without filter and/or asset's selection
+
+![image](https://github.com/baastos/tree-assets/tree/master/src/assets/Screenshot_1)
+
+### Tree with input filter
+
+![image](https://github.com/baastos/tree-assets/tree/master/src/assets/Screenshot_2)
+
+### Tree with energy sensor type selected filter
+
+![image](https://github.com/baastos/tree-assets/tree/master/src/assets/Screenshot_3)
+
+### Tree with alert status selected filter
+
+![image](https://github.com/baastos/tree-assets/tree/master/src/assets/Screenshot_4)
+
+### Display of asset selected
+
+![image](https://github.com/baastos/tree-assets/tree/master/src/assets/Screenshot_5)
+
+## Running the project
+
+To run the app, follow these steps:
+
+- First, clone the repository
+
+```bash
+git clone git@github.com:baastos/tree-assets.git
+```
+
+- After clonning the project, open it on VSCode or another code editor. Then, open the project and install dependencies
+
+```bash
+npm install
+```
+
+- Run the project
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Now, access the link on you terminal, or just try accessing `http://localhost:3000`.

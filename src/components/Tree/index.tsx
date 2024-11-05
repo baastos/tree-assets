@@ -14,12 +14,14 @@ import { ILocation, INode, TAssets, TSelectedNode } from "@/types";
 export function Tree() {
   const { companyId, inputSearch, sensor, status } = useStore();
 
-  const { data: locations } = useQuery<ILocation[]>({
+  const { data: locations, isLoading: isLocationsLoading } = useQuery<
+    ILocation[]
+  >({
     queryKey: ["locations", { companyId }],
     queryFn: () => getLocations(companyId),
     enabled: !!companyId,
   });
-  const { data: assets } = useQuery<TAssets>({
+  const { data: assets, isLoading: isAssetsLoading } = useQuery<TAssets>({
     queryKey: ["assets", { companyId }],
     queryFn: () => getAssets(companyId),
     enabled: !!companyId,
@@ -117,7 +119,20 @@ export function Tree() {
         height: "calc(100vh - 200px)",
       }}
     >
-      <TreeView tree={Object.values(tree as INode[])} />
+      {isAssetsLoading || isLocationsLoading ? (
+        <div
+          style={{
+            height: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <div className="loader" />
+        </div>
+      ) : (
+        <TreeView tree={Object.values(tree as INode[])} />
+      )}
     </div>
   );
 }

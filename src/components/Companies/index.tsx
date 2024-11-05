@@ -11,7 +11,7 @@ import { initialSelectedItemState } from "@/context/preset";
 export function Companies() {
   const { companyId } = useStore();
 
-  const { data: companies } = useQuery<TCompanies>({
+  const { data: companies, isLoading } = useQuery<TCompanies>({
     queryKey: ["companies"],
     queryFn: getCompanies,
   });
@@ -26,6 +26,9 @@ export function Companies() {
     setSelectedItem(initialSelectedItemState);
   }, [companyId]);
 
+  if (isLoading) {
+    return <div className="loader-companies" />;
+  }
   return (
     <div
       style={{

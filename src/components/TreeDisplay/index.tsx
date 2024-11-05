@@ -69,6 +69,7 @@ export function TreeDisplay() {
         }}
       >
         <div
+          id="tree-display-image-container"
           style={{
             display: "flex",
             width: "100%",
@@ -76,6 +77,7 @@ export function TreeDisplay() {
         >
           <ImageDisplay type={selectedItem?.sensorType} />
           <div
+            id="tree-display-image-upside"
             style={{
               padding: "24px",
               display: "flex",
@@ -97,7 +99,7 @@ export function TreeDisplay() {
                   color: "var(--text-disabled)",
                 }}
               >
-                {sensorToDisplay[selectedItem?.sensorType]}
+                {sensorToDisplay[selectedItem?.sensorType] || "N/A"}
               </span>
             </div>
 
@@ -142,7 +144,7 @@ export function TreeDisplay() {
                     color: "var(--text-disabled)",
                   }}
                 >
-                  {typeToDisplay[selectedItem?.sensorType]}
+                  {typeToDisplay[selectedItem?.sensorType] || "N/A"}
                 </span>
               </div>
             </div>
@@ -150,6 +152,7 @@ export function TreeDisplay() {
         </div>
 
         <div
+          className="divider"
           style={{
             height: "1px",
             width: "100%",
@@ -158,6 +161,7 @@ export function TreeDisplay() {
           }}
         />
         <div
+          id="display-footer"
           style={{
             display: "flex",
             marginTop: "24px",
@@ -184,11 +188,12 @@ export function TreeDisplay() {
                   color: "var(--text-disabled)",
                 }}
               >
-                {selectedItem?.sensorId}
+                {selectedItem?.sensorId || "N/A"}
               </span>
             </div>
           </div>
           <div
+            id="display-item-footer"
             style={{
               display: "flex",
               flexDirection: "column",
@@ -212,7 +217,7 @@ export function TreeDisplay() {
                   color: "var(--text-disabled)",
                 }}
               >
-                {selectedItem?.gatewayId}
+                {selectedItem?.gatewayId || "N/A"}
               </span>
             </div>
           </div>

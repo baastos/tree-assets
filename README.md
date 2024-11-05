@@ -23,11 +23,11 @@ The technologies used:
 
 ![image](src/assets/Screenshot_1.jpg)
 
-### Tree with input filter
+### Tree with input filter and selected item
 
 ![image](src/assets/Screenshot_2.jpg)
 
-### Tree with energy sensor type selected filter with selected item
+### Tree with energy sensor type selected filter
 
 ![image](src/assets/Screenshot_3.jpg)
 

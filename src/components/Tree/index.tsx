@@ -2,17 +2,16 @@
 import { setSelectedItem, useStore } from "@/context";
 import { getAssets, getLocations } from "@/services";
 import { useQuery } from "@tanstack/react-query";
-import useGetFilteredTree from "@/hooks/useGetFilteredTree";
-import { useState } from "react";
-import Image from "next/image";
-import Arrow from "@/assets/down-arrow.svg";
+import { memo, useCallback, useState } from "react";
 
 import { SensorIcon } from "../SensorIcon";
-import { renderIconType } from "../Icons";
+import { ArrowIcon, renderIconType } from "../Icons";
 import { ILocation, INode, TAssets, TSelectedNode } from "@/types";
+import { recursiveFilter } from "@/utils";
+import useBuildTree from "@/hooks/useBuildTree";
 
 export function Tree() {
-  const { companyId, inputSearch, sensor, status } = useStore();
+  const { companyId } = useStore();
 
   const { data: locations, isLoading: isLocationsLoading } = useQuery<
     ILocation[]
@@ -27,33 +26,44 @@ export function Tree() {
     enabled: !!companyId,
   });
 
-  const tree = useGetFilteredTree({
+  const tree = useBuildTree({
     locations,
     assets,
-    inputSearch,
-    sensor,
-    status,
   });
-  const TreeView = ({ tree }: { tree: INode[] }) => {
+
+  const TreeView = memo(({ tree }: { tree: INode[] }) => {
+    const { inputSearch, sensor, status } = useStore();
+
+    const hasFilters = inputSearch || sensor || status;
+
+    if (!hasFilters) {
+      return tree.map((node) => <TreeNode key={node.id} node={node} />);
+    }
+
+    const filteredTree = tree
+      .map((node) => recursiveFilter(node, inputSearch, sensor, status))
+      .filter((child) => Boolean(child)) as INode[];
+
     return (
       <div>
-        {tree.map((node) => (
+        {filteredTree.map((node) => (
           <TreeNode key={node.id} node={node} />
         ))}
       </div>
     );
-  };
+  });
+  TreeView.displayName = "TreeViewDisplayName";
 
-  const TreeNode = ({ node }: { node: TSelectedNode | INode }) => {
+  const TreeNode = memo(({ node }: { node: TSelectedNode | INode }) => {
     const [isOpen, setIsOpen] = useState<boolean>(node.isOpen);
     const { selectedItem } = useStore();
     const isItemSelected = selectedItem.id && selectedItem.id === node.id;
 
     const isNodeSelectable = !node.nodes.length && node.type !== "location";
 
-    const toggle = () => {
-      setIsOpen(!isOpen);
-    };
+    const toggle = useCallback(() => {
+      setIsOpen((prev) => !prev);
+    }, []);
 
     return (
       <div
@@ -82,18 +92,15 @@ export function Tree() {
           }}
         >
           {node.nodes.length > 0 && (
-            <button className="button" type="button" onClick={toggle}>
-              <Image
-                alt="Arrow icon"
-                src={Arrow}
-                width={12}
-                priority
-                loading="eager"
-                style={{
-                  ...(!isOpen && { transform: "rotate(-90deg)" }),
-                  cursor: "pointer",
-                }}
-              />
+            <button
+              className="button"
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                toggle();
+              }}
+            >
+              <ArrowIcon isOpen={isOpen} />
             </button>
           )}
           {renderIconType[node.type]}
@@ -110,7 +117,8 @@ export function Tree() {
         {isOpen && <TreeView tree={node.nodes} />}
       </div>
     );
-  };
+  });
+  TreeNode.displayName = "TreeNodeDisplayName";
   return (
     <div
       id="tree-view"
@@ -131,7 +139,7 @@ export function Tree() {
           <div className="loader" />
         </div>
       ) : (
-        <TreeView tree={Object.values(tree as INode[])} />
+        <TreeView tree={Object.values(tree) as INode[]} />
       )}
     </div>
   );

@@ -17,6 +17,8 @@ The technologies used:
 
 - Introducing pagination for trees with a large number of nodes would streamline processing.
 
+- Implementing virtualization to improve performance by rendering only the items visible in the interface, reducing the load on the application and ensuring smoother interactions as users navigate the tree view.
+
 ## Results
 
 ### Tree without filter and/or asset's selection

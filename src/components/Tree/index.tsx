@@ -52,7 +52,6 @@ export function Tree() {
       </div>
     );
   });
-  TreeView.displayName = "TreeViewDisplayName";
 
   const TreeNode = memo(({ node }: { node: TSelectedNode | INode }) => {
     const [isOpen, setIsOpen] = useState<boolean>(node.isOpen);
@@ -118,7 +117,11 @@ export function Tree() {
       </div>
     );
   });
+
+  TreeView.displayName = "TreeViewDisplayName";
+
   TreeNode.displayName = "TreeNodeDisplayName";
+
   return (
     <div
       id="tree-view"
